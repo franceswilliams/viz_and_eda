@@ -89,10 +89,10 @@ weather_df %>%
 saving initial plots (mostly don’t use this one)
 
 ``` r
-scatterplot = 
-  weather_df %>% 
-  ggplot(aes(x = tmin, y = tmax)) +
-  geom_point()
+#scatterplot = 
+#  weather_df %>% 
+#  ggplot(aes(x = tmin, y = tmax)) +
+#  geom_point()
 ```
 
 adding color\!
@@ -263,3 +263,52 @@ weather_df %>%
     ## Warning: Removed 3 rows containing non-finite values (stat_density_ridges).
 
 ![](dataviz1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+saving a plot:
+
+``` r
+ggp_ridge_temp =
+  weather_df %>% 
+  ggplot(aes(x = tmax, y = name)) +
+  geom_density_ridges()
+
+ggsave("ggplot_temp_ridge.pdf", ggp_ridge_temp)
+```
+
+    ## Saving 7 x 5 in image
+
+    ## Picking joint bandwidth of 1.84
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_density_ridges).
+
+embedding plots in RMarkdown:
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .4) +
+  geom_smooth(se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .4) +
+  geom_smooth(se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->

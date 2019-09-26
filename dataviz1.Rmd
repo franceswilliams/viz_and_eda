@@ -43,10 +43,10 @@ weather_df %>%
 
 saving initial plots (mostly don't use this one)
 ```{r}
-scatterplot = 
-  weather_df %>% 
-  ggplot(aes(x = tmin, y = tmax)) +
-  geom_point()
+#scatterplot = 
+#  weather_df %>% 
+#  ggplot(aes(x = tmin, y = tmax)) +
+#  geom_point()
 ```
 
 adding color!
@@ -139,4 +139,29 @@ ridge plots:
 weather_df %>% 
   ggplot(aes(x = tmax, y = name)) +
   geom_density_ridges()
+```
+
+saving a plot:
+```{r}
+ggp_ridge_temp =
+  weather_df %>% 
+  ggplot(aes(x = tmax, y = name)) +
+  geom_density_ridges()
+
+ggsave("ggplot_temp_ridge.pdf", ggp_ridge_temp)
+```
+
+embedding plots in RMarkdown (2 diff widths):
+```{r, fig.width = 6}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .4) +
+  geom_smooth(se = FALSE)
+```
+
+```{r, fig.width = 12}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .4) +
+  geom_smooth(se = FALSE)
 ```
