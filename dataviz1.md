@@ -175,3 +175,91 @@ weather_df %>%
     ## Warning: Removed 3 rows containing missing values (geom_point).
 
 ![](dataviz1_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+2d density
+
+``` r
+#weather_df %>% 
+#  ggplot(aes(x = tmin, y = tmax)) +
+#  geom_hex()
+# geom hex requires different package, can also use dens2d
+```
+
+More kinds of plots:
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmax, fill = name)) +
+  geom_histogram(position = "dodge")
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_bin).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+side by side:
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmax, fill = name)) +
+  geom_histogram() +
+  facet_grid(~name)
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_bin).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+density plot - so smooth\!
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmax, fill = name)) +
+  geom_density(alpha = .3)
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_density).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+Boxplot
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = name, y = tmax)) +
+  geom_boxplot()
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_boxplot).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+Violin plot: can be good for looking at bimodality
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = name, y = tmax)) +
+  geom_violin()
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_ydensity).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+ridge plots:
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmax, y = name)) +
+  geom_density_ridges()
+```
+
+    ## Picking joint bandwidth of 1.84
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_density_ridges).
+
+![](dataviz1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
